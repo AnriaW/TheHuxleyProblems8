@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() {
+    int n, m, o;
+    scanf("%d %d %d", &n, &m, &o);
+
+    int cas[n];
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &cas[i]);
+    }
+
+    int pos[m];
+    for (int i = 0; i < m; i++) {
+        pos[i] = 0;
+    }
+
+    for (int time = 0; time < o; time++) {
+        for (int pler = 0; pler < m; pler++) {
+            int dado;
+            scanf("%d", &dado);
+
+            pos[pler] = (pos[pler] + dado) % n;
+
+            if (cas[pos[pler]] > 0) {
+                pos[pler] = (pos[pler] + cas[pos[pler]]) % n;
+            } else if (cas[pos[pler]] < 0) {
+                pos[pler] = (pos[pler] + n + cas[pos[pler]]) % n;
+            }
+        }
+    }
+
+    for (int i = 0; i < m; i++) {
+        printf("%d\n", pos[i]);
+    }
+
+    return 0;
+}
