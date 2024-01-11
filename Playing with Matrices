@@ -1,0 +1,49 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <math.h>
+#include <string.h>
+
+int main() {
+    float a[3][3];
+    int menor = 0;
+    int diag = 0;
+    float media = 0.0;
+    int cont = 0;
+    int i;
+    int j;
+
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            
+            scanf("%f", &a[i][j]);
+
+            if (a[i][j] > 0) {
+                media += a[i][j];
+                cont++;
+            }
+            if (i != j) {
+                diag += a[i][j];
+            }
+            if (i == 0 && j == 0) {
+                menor = a[i][j];
+            }
+            if (a[i][j] < menor) {
+                menor = a[i][j];
+            }
+        }
+    }
+
+
+    printf("%.2f ", media/cont);
+    printf("%d ", menor);
+
+    if (menor % 2 == 0) {
+        printf("1 ");
+    } else {
+        printf("0 ");
+    }
+    printf("%d\n", diag);
+
+    return 0;
+}
