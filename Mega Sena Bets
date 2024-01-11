@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+int fabint(int n, int allgamb[n][10], int resul[6], int index, int winner) {
+    if (index == n) return winner;
+    else{
+        int count = 0;
+        for(int actu = 0; actu < 10; actu++){
+            for(int indres = 0; indres < 6; indres++){
+                if(allgamb[index][actu] == resul[indres]) count++;
+            }
+        }
+        if(count == 6) winner++;
+        return fabint(n, allgamb, resul, index + 1, winner);
+    }
+}
+
+int main() {
+    int gamb;
+    scanf("%d", &gamb);
+    int allgamb[gamb][10];
+    for(int I = 0; I < gamb; I++){
+        for(int J = 0; J < 10; J++){
+            int temp;
+            if (scanf("%d", &temp) != EOF) allgamb[I][J] = temp;
+            char car = getchar();
+            if (car == '\n') break;
+        }
+    }
+    int resul[6];
+    for(int X = 0; X < 6; X++) scanf("%d", &resul[X]);
+
+    int A = fabint(gamb, allgamb, resul, 0, 0);
+    printf("Total de ganhadores: %d\n", A);
+}
